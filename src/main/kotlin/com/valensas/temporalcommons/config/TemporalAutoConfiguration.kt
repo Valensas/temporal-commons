@@ -1,7 +1,7 @@
-package com.valenspara.temporalcommons.config
+package com.valensas.temporalcommons.config
 
-import com.valenspara.temporalcommons.client.TemporalClientConfiguration
-import com.valenspara.temporalcommons.util.JacksonDataConverterConfiguration
+import com.valensas.temporalcommons.client.TemporalClientConfiguration
+import com.valensas.temporalcommons.util.JacksonDataConverterConfiguration
 import io.temporal.client.WorkflowClient
 import io.temporal.serviceclient.WorkflowServiceStubs
 import io.temporal.serviceclient.WorkflowServiceStubsOptions
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Import
 @AutoConfiguration
 @ConditionalOnClass(WorkflowClient::class)
 @ConditionalOnProperty(
-    prefix = "valenspara.temporal",
+    prefix = "valensas.temporal",
     name = ["enabled"],
     havingValue = "true",
     matchIfMissing = true,

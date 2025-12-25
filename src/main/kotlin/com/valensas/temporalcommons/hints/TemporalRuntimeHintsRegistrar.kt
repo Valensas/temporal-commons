@@ -1,8 +1,8 @@
-package com.valenspara.temporalcommons.hints
+package com.valensas.temporalcommons.hints
 
-import com.valenspara.temporalcommons.config.DataConverterProperties
-import com.valenspara.temporalcommons.config.TemporalProperties
-import com.valenspara.temporalcommons.config.WorkerProperties
+import com.valensas.temporalcommons.config.DataConverterProperties
+import com.valensas.temporalcommons.config.TemporalProperties
+import com.valensas.temporalcommons.config.WorkerProperties
 import io.temporal.api.errordetails.v1.WorkflowExecutionAlreadyStartedFailure
 import io.temporal.api.sdk.v1.WorkflowDefinition
 import io.temporal.api.sdk.v1.WorkflowInteractionDefinition

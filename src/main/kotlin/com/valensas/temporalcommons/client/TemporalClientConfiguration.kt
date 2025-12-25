@@ -1,4 +1,4 @@
-package com.valenspara.temporalcommons.client
+package com.valensas.temporalcommons.client
 
 import io.temporal.client.WorkflowClient
 import io.temporal.client.WorkflowClientOptions

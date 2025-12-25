@@ -10,7 +10,7 @@ plugins {
     id("java-library")
 }
 
-group = "com.valenspara"
+group = "com.valensas"
 version = "1.0.0"
 
 java {

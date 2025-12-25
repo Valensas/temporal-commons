@@ -1,6 +1,6 @@
-package com.valenspara.temporalcommons.config
+package com.valensas.temporalcommons.config
 
-import com.valenspara.temporalcommons.client.WorkerRegistrationCustomizer
+import com.valensas.temporalcommons.client.WorkerRegistrationCustomizer
 import io.temporal.client.WorkflowClient
 import io.temporal.worker.WorkerFactory
 import org.slf4j.LoggerFactory
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @ConditionalOnProperty(
-    prefix = "valenspara.temporal.worker",
+    prefix = "valensas.temporal.worker",
     name = ["auto-discovery-enabled"],
     havingValue = "true",
     matchIfMissing = true,

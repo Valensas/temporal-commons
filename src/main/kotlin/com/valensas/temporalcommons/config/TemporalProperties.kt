@@ -1,8 +1,8 @@
-package com.valenspara.temporalcommons.config
+package com.valensas.temporalcommons.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "valenspara.temporal")
+@ConfigurationProperties(prefix = "valensas.temporal")
 data class TemporalProperties(
     val serverAddress: String,
     val namespace: String,

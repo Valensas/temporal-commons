@@ -1,4 +1,4 @@
-package com.valenspara.temporalcommons.util
+package com.valensas.temporalcommons.util
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.temporal.common.converter.DataConverter
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @ConditionalOnProperty(
-    prefix = "valenspara.temporal.data-converter",
+    prefix = "valensas.temporal.data-converter",
     name = ["jackson-enabled"],
     havingValue = "true",
     matchIfMissing = true,
