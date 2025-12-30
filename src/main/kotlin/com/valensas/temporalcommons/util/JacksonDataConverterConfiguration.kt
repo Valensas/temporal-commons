@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @ConditionalOnProperty(
-    prefix = "valensas.temporal.data-converter",
+    prefix = "temporal.data-converter",
     name = ["jackson-enabled"],
     havingValue = "true",
     matchIfMissing = true,

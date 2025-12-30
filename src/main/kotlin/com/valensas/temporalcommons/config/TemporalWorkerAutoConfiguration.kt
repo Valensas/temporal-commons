@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @ConditionalOnProperty(
-    prefix = "valensas.temporal.worker",
+    prefix = "temporal.worker",
     name = ["auto-discovery-enabled"],
     havingValue = "true",
     matchIfMissing = true,

@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Import
 @AutoConfiguration
 @ConditionalOnClass(WorkflowClient::class)
 @ConditionalOnProperty(
-    prefix = "valensas.temporal",
+    prefix = "temporal",
     name = ["enabled"],
     havingValue = "true",
     matchIfMissing = true,

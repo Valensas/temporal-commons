@@ -1,5 +1,6 @@
 package com.valensas.temporalcommons.client
 
+import com.valensas.temporalcommons.config.TemporalProperties
 import io.temporal.client.WorkflowClient
 import io.temporal.client.WorkflowClientOptions
 import io.temporal.common.converter.DataConverter
@@ -15,11 +16,13 @@ class TemporalClientConfiguration {
     fun workflowClient(
         serviceStubs: WorkflowServiceStubs,
         temporalDataConverter: DataConverter,
+        properties: TemporalProperties,
     ): WorkflowClient {
         val options =
             WorkflowClientOptions
                 .newBuilder()
                 .setDataConverter(temporalDataConverter)
+                .setNamespace(properties.namespace)
                 .build()
 
         return WorkflowClient.newInstance(serviceStubs, options)
