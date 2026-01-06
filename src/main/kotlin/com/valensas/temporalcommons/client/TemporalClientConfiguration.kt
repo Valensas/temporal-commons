@@ -4,6 +4,7 @@ import com.valensas.temporalcommons.config.TemporalProperties
 import io.temporal.client.WorkflowClient
 import io.temporal.client.WorkflowClientOptions
 import io.temporal.client.schedules.ScheduleClient
+import io.temporal.client.schedules.ScheduleClientOptions
 import io.temporal.common.converter.DataConverter
 import io.temporal.serviceclient.WorkflowServiceStubs
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
@@ -31,5 +32,18 @@ class TemporalClientConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    fun scheduleClient(serviceStubs: WorkflowServiceStubs): ScheduleClient = ScheduleClient.newInstance(serviceStubs)
+    fun scheduleClient(
+        serviceStubs: WorkflowServiceStubs,
+        temporalDataConverter: DataConverter,
+        properties: TemporalProperties,
+    ): ScheduleClient {
+        val options =
+            ScheduleClientOptions
+                .newBuilder()
+                .setDataConverter(temporalDataConverter)
+                .setNamespace(properties.namespace)
+                .build()
+
+        return ScheduleClient.newInstance(serviceStubs, options)
+    }
 }
