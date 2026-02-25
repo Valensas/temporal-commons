@@ -8,10 +8,10 @@ plugins {
     id("com.github.ben-manes.versions") version "0.52.0"
     id("maven-publish")
     id("java-library")
+    id("net.thebugmc.gradle.sonatype-central-portal-publisher") version "1.2.4"
 }
 
 group = "com.valensas"
-version = "1.0.3"
 
 java {
     toolchain {
@@ -21,20 +21,6 @@ java {
 
 repositories {
     mavenCentral()
-    mavenLocal()
-    if (project.hasProperty("GITLAB_REPO_URL")) {
-        maven {
-            name = "Gitlab"
-            url = uri(project.property("GITLAB_REPO_URL").toString())
-            credentials(HttpHeaderCredentials::class.java) {
-                name = project.findProperty("GITLAB_TOKEN_NAME")?.toString()
-                value = project.findProperty("GITLAB_TOKEN")?.toString()
-            }
-            authentication {
-                create("header", HttpHeaderAuthentication::class)
-            }
-        }
-    }
 }
 
 dependencyManagement {
@@ -52,7 +38,7 @@ dependencies {
     api("io.temporal:temporal-spring-boot-starter:1.32.1")
 
     //GraalVM
-    implementation("com.valensas:graalvm-native-support:1.0.2")
+    implementation("com.valensas:graalvm-native-support:1.0.9")
 
     //Kotlin
     api("io.projectreactor.kotlin:reactor-kotlin-extensions")
@@ -70,25 +56,50 @@ kotlin {
 }
 
 publishing {
-    repositories {
-        if (System.getenv("CI_API_V4_URL") != null) {
-            maven {
-                name = "Gitlab"
-                url = uri("${System.getenv("CI_API_V4_URL")}/projects/${System.getenv("CI_PROJECT_ID")}/packages/maven")
-                credentials(HttpHeaderCredentials::class.java) {
-                    name = "Job-Token"
-                    value = System.getenv("CI_JOB_TOKEN")
-                }
-                authentication {
-                    create("header", HttpHeaderAuthentication::class)
-                }
-            }
+    publications {
+        create("library", MavenPublication::class.java) {
+            artifactId = "temporal-commons"
+            from(components["java"])
         }
     }
+    repositories {
+        mavenLocal()
+    }
+}
 
-    publications {
-        create<MavenPublication>("artifact") {
-            from(components["java"])
+signing {
+    val keyId = System.getenv("SIGNING_KEYID")
+    val secretKey = System.getenv("SIGNING_SECRETKEY")
+    val passphrase = System.getenv("SIGNING_PASSPHRASE")
+
+    useInMemoryPgpKeys(keyId, secretKey, passphrase)
+}
+
+centralPortal {
+    name = "temporal-commons"
+    username = System.getenv("SONATYPE_USERNAME")
+    password = System.getenv("SONATYPE_PASSWORD")
+    pom {
+        name = "Temporal Commons"
+        description = "Common utilities for Temporal workflow integration with Spring Boot."
+        url = "https://valensas.com/"
+        scm {
+            url = "https://github.com/Valensas/temporal-commons"
+        }
+
+        licenses {
+            license {
+                name.set("MIT License")
+                url.set("https://mit-license.org")
+            }
+        }
+
+        developers {
+            developer {
+                id.set("0")
+                name.set("Valensas")
+                email.set("info@valensas.com")
+            }
         }
     }
 }
