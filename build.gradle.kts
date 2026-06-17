@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("jvm") version "2.0.21"
-    kotlin("plugin.spring") version "2.1.10"
+    kotlin("jvm") version "2.4.0"
+    kotlin("plugin.spring") version "2.4.0"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.jmailen.kotlinter") version "5.0.1"
-    id("com.github.ben-manes.versions") version "0.52.0"
+    id("org.jmailen.kotlinter") version "5.5.0"
+    id("com.github.ben-manes.versions") version "0.54.0"
     id("maven-publish")
     id("java-library")
     id("net.thebugmc.gradle.sonatype-central-portal-publisher") version "1.2.4"
@@ -23,9 +23,11 @@ repositories {
     mavenCentral()
 }
 
+extra["kotlin.version"] = "2.4.0"
+
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.boot:spring-boot-dependencies:3.4.2")
+        mavenBom("org.springframework.boot:spring-boot-dependencies:3.5.15")
     }
 }
 
@@ -35,10 +37,10 @@ dependencies {
     api("org.springframework.data:spring-data-commons")
 
     // Temporal
-    api("io.temporal:temporal-spring-boot-starter:1.32.1")
+    api("io.temporal:temporal-spring-boot-starter:1.35.0")
 
     //GraalVM
-    implementation("com.valensas:graalvm-native-support:1.0.9")
+    implementation("com.valensas:graalvm-native-support:1.0.10")
 
     //Kotlin
     api("io.projectreactor.kotlin:reactor-kotlin-extensions")
