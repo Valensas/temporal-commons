@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration
     prefix = "temporal.worker",
     name = ["auto-discovery-enabled"],
     havingValue = "true",
-    matchIfMissing = true,
+    matchIfMissing = true
 )
 class TemporalWorkerAutoConfiguration {
     private val logger = LoggerFactory.getLogger(javaClass)
@@ -25,7 +25,7 @@ class TemporalWorkerAutoConfiguration {
     fun temporalWorkerFactory(
         workflowClient: WorkflowClient,
         taskQueue: String,
-        customizers: ObjectProvider<WorkerRegistrationCustomizer>,
+        customizers: ObjectProvider<WorkerRegistrationCustomizer>
     ): WorkerFactory {
         logger.debug("Initializing Temporal worker factory")
 

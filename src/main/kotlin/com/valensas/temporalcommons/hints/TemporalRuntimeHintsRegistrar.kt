@@ -19,7 +19,7 @@ class TemporalRuntimeHintsRegistrar : RuntimeHintsRegistrar {
 
     override fun registerHints(
         hints: RuntimeHints,
-        classLoader: ClassLoader?,
+        classLoader: ClassLoader?
     ) {
         registerBaseProxies(hints)
         registerTemporalApiReflection(hints)
@@ -32,7 +32,7 @@ class TemporalRuntimeHintsRegistrar : RuntimeHintsRegistrar {
             listOf(
                 arrayOf<Class<*>>(WorkflowServiceStubs::class.java),
                 arrayOf<Class<*>>(ScheduleClient::class.java),
-                arrayOf<Class<*>>(ActivityCompletionClient::class.java),
+                arrayOf<Class<*>>(ActivityCompletionClient::class.java)
             )
 
         proxyInterfaces.forEach { hints.proxies().registerJdkProxy(*it) }
@@ -45,14 +45,14 @@ class TemporalRuntimeHintsRegistrar : RuntimeHintsRegistrar {
             WorkflowDefinition::class.java,
             WorkflowDefinition.Builder::class.java,
             WorkflowInteractionDefinition::class.java,
-            WorkflowInteractionDefinition.Builder::class.java,
+            WorkflowInteractionDefinition.Builder::class.java
         ).forEach { hints.reflection().registerType(it, *memberCategories) }
     }
 
     private fun registerFailureReflection(hints: RuntimeHints) {
         listOf(
             WorkflowExecutionAlreadyStartedFailure::class.java,
-            WorkflowExecutionAlreadyStartedFailure.Builder::class.java,
+            WorkflowExecutionAlreadyStartedFailure.Builder::class.java
         ).forEach { hints.reflection().registerType(it, *memberCategories) }
     }
 
@@ -60,7 +60,7 @@ class TemporalRuntimeHintsRegistrar : RuntimeHintsRegistrar {
         listOf(
             TemporalProperties::class.java,
             WorkerProperties::class.java,
-            DataConverterProperties::class.java,
+            DataConverterProperties::class.java
         ).forEach { hints.reflection().registerType(it, *memberCategories) }
     }
 }

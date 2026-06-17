@@ -14,13 +14,12 @@ import org.springframework.context.annotation.Configuration
     prefix = "temporal.data-converter",
     name = ["jackson-enabled"],
     havingValue = "true",
-    matchIfMissing = true,
+    matchIfMissing = true
 )
 class JacksonDataConverterConfiguration {
     @Bean
     @ConditionalOnMissingBean(name = ["temporalDataConverter"])
-    fun temporalDataConverter(objectMapper: ObjectMapper): DataConverter =
-        DefaultDataConverter(
-            JacksonJsonPayloadConverter(objectMapper),
-        )
+    fun temporalDataConverter(objectMapper: ObjectMapper): DataConverter = DefaultDataConverter(
+        JacksonJsonPayloadConverter(objectMapper)
+    )
 }

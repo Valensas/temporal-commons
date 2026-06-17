@@ -8,16 +8,16 @@ data class TemporalProperties(
     val namespace: String,
     val enabled: Boolean = true,
     val worker: WorkerProperties = WorkerProperties(),
-    val dataConverter: DataConverterProperties = DataConverterProperties(),
+    val dataConverter: DataConverterProperties = DataConverterProperties()
 )
 
 data class WorkerProperties(
     val autoDiscoveryEnabled: Boolean = true,
     val scanPackages: List<String> = emptyList(),
     val maxConcurrentWorkflowTaskPollers: Int? = null,
-    val maxConcurrentActivityTaskPollers: Int? = null,
+    val maxConcurrentActivityTaskPollers: Int? = null
 )
 
 data class DataConverterProperties(
-    val jacksonEnabled: Boolean = true,
+    val jacksonEnabled: Boolean = true
 )

@@ -19,13 +19,13 @@ import org.springframework.context.annotation.Import
     prefix = "temporal",
     name = ["enabled"],
     havingValue = "true",
-    matchIfMissing = true,
+    matchIfMissing = true
 )
 @EnableConfigurationProperties(TemporalProperties::class)
 @Import(
     TemporalClientConfiguration::class,
     JacksonDataConverterConfiguration::class,
-    TemporalWorkerAutoConfiguration::class,
+    TemporalWorkerAutoConfiguration::class
 )
 class TemporalAutoConfiguration {
     @Bean

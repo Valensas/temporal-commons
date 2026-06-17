@@ -18,7 +18,7 @@ class TemporalClientConfiguration {
     fun workflowClient(
         serviceStubs: WorkflowServiceStubs,
         temporalDataConverter: DataConverter,
-        properties: TemporalProperties,
+        properties: TemporalProperties
     ): WorkflowClient {
         val options =
             WorkflowClientOptions
@@ -35,7 +35,7 @@ class TemporalClientConfiguration {
     fun scheduleClient(
         serviceStubs: WorkflowServiceStubs,
         temporalDataConverter: DataConverter,
-        properties: TemporalProperties,
+        properties: TemporalProperties
     ): ScheduleClient {
         val options =
             ScheduleClientOptions
