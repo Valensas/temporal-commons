@@ -38,7 +38,6 @@ dependencies {
 
     // Temporal
     api("io.temporal:temporal-spring-boot-starter:1.35.0")
-    api(platform("io.grpc:grpc-bom:1.58.1"))
 
     //GraalVM
     implementation("com.valensas:graalvm-native-support:1.0.10")
