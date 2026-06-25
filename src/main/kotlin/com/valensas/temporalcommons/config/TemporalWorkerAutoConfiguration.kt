@@ -1,6 +1,7 @@
 package com.valensas.temporalcommons.config
 
 import com.valensas.temporalcommons.client.WorkerRegistrationCustomizer
+import com.valensas.temporalcommons.hints.TemporalRuntimeHintsRegistrar
 import io.temporal.client.WorkflowClient
 import io.temporal.worker.WorkerFactory
 import org.slf4j.LoggerFactory
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.ImportRuntimeHints
 
 @Configuration
 @ConditionalOnProperty(
@@ -17,6 +19,7 @@ import org.springframework.context.annotation.Configuration
     havingValue = "true",
     matchIfMissing = true
 )
+@ImportRuntimeHints(TemporalRuntimeHintsRegistrar::class)
 class TemporalWorkerAutoConfiguration {
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -24,7 +27,6 @@ class TemporalWorkerAutoConfiguration {
     @ConditionalOnMissingBean
     fun temporalWorkerFactory(
         workflowClient: WorkflowClient,
-        taskQueue: String,
         customizers: ObjectProvider<WorkerRegistrationCustomizer>
     ): WorkerFactory {
         logger.debug("Initializing Temporal worker factory")
