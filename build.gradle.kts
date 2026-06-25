@@ -15,7 +15,7 @@ group = "com.valensas"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
@@ -27,7 +27,7 @@ extra["kotlin.version"] = "2.4.0"
 
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.boot:spring-boot-dependencies:3.5.15")
+        mavenBom("org.springframework.boot:spring-boot-dependencies:4.1.0")
     }
 }
 
@@ -40,20 +40,20 @@ dependencies {
     api("io.temporal:temporal-spring-boot-starter:1.35.0")
 
     //GraalVM
-    implementation("com.valensas:graalvm-native-support:1.0.10")
+    implementation("com.valensas:graalvm-native-support:2.0.0")
 
     //Kotlin
     api("io.projectreactor.kotlin:reactor-kotlin-extensions")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    api("com.fasterxml.jackson.module:jackson-module-kotlin")
-    api("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    api("tools.jackson.module:jackson-module-kotlin")
 
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
-        jvmTarget.set(JvmTarget.JVM_21)
+        jvmTarget.set(JvmTarget.JVM_25)
     }
 }
 

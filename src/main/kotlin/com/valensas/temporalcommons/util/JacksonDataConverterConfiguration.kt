@@ -1,6 +1,6 @@
 package com.valensas.temporalcommons.util
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.kotlinModule
 import io.temporal.common.converter.DataConverter
 import io.temporal.common.converter.DefaultDataConverter
 import io.temporal.common.converter.JacksonJsonPayloadConverter
@@ -19,7 +19,12 @@ import org.springframework.context.annotation.Configuration
 class JacksonDataConverterConfiguration {
     @Bean
     @ConditionalOnMissingBean(name = ["temporalDataConverter"])
-    fun temporalDataConverter(objectMapper: ObjectMapper): DataConverter = DefaultDataConverter(
-        JacksonJsonPayloadConverter(objectMapper)
-    )
+    fun temporalDataConverter(): DataConverter {
+        val mapper = JacksonJsonPayloadConverter.newDefaultObjectMapper()
+            .registerModule(kotlinModule())
+
+        return DefaultDataConverter(
+            JacksonJsonPayloadConverter(mapper)
+        )
+    }
 }
